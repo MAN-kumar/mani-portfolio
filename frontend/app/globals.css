@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #08090d;
+    --foreground: #f8fafc;
+    --surface: #0f1117;
+    --surface-hover: #141720;
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --border-accent: rgba(56, 189, 248, 0.25);
+    --accent: #38bdf8;
+    --accent-muted: rgba(56, 189, 248, 0.12);
+    --muted: #94a3b8;
+    --muted-dark: #475569;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.25);
+    color: #ffffff;
+  }
+
+  /* Focus Ring Accessibility Utility */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Custom Editorial Blueprint Grid Utilities */
+.grid-blueprint {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
