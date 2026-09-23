@@ -16,13 +16,13 @@ export const ResearchPreview: React.FC<ResearchPreviewProps> = ({
   selectedTech,
 }) => {
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-12 sm:py-16 border-t border-[var(--border)]">
       <FadeIn>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
           <SectionHeading
             eyebrow="04 // RESEARCH LAB"
             title="Experiments & Methodologies"
-            description="Investigating machine learning explainability, dataset analysis, and algorithmic performance."
+            description="Investigating machine learning explainability, dataset feature selection, and algorithmic evaluation."
             className="mb-0"
           />
           <LinkButton

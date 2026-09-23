@@ -3,116 +3,229 @@ import { Project } from "@/types/portfolio";
 export const projectsData: Project[] = [
   {
     id: "proj-1",
-    slug: "interactive-portfolio-platform",
-    title: "Mani — Digital Identity & Portfolio",
+    slug: "explainable-phishing-detection",
+    title: "Explainable Machine Learning for Phishing Website Detection Using URL-Based Features",
     shortDescription:
-      "A dark-first, highly responsive portfolio platform built with Next.js App Router, TypeScript, and Framer Motion.",
+      "A machine-learning based phishing website detection system using URL-based features and explainable AI techniques.",
     description:
-      "A product-grade personal portfolio engineered as a structured data system. Features modular component design, URL-based state sync, and strict accessibility standards.",
-    category: "Full Stack",
+      "A machine-learning based phishing website detection system using URL-based features and explainable AI techniques. Evaluates multiple classifier algorithms across varying feature subsets selected via Information Gain, optimized with Optuna and RandomizedSearchCV, and interpreted using SHAP values.",
+    category: "AI/ML",
     technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Django",
+      "Python",
+      "Scikit-learn",
+      "XGBoost",
+      "LightGBM",
+      "CatBoost",
+      "Random Forest",
+      "Gradient Boosting",
+      "Extra Trees",
+      "SVM",
+      "SHAP",
+      "Optuna",
     ],
     year: 2026,
     status: "Completed",
     featured: true,
     published: true,
     problem:
-      "Traditional developer portfolios often mix UI presentation with hardcoded text, making content updates fragile and maintenance cumbersome.",
+      "Detects potentially malicious/phishing websites from URL-based characteristics using machine learning classification.",
     objective:
-      "Engineered a scalable architecture where structured JSON/API data feeds reusable component layouts across 9 interactive routes.",
+      "Develop a robust classification pipeline comparing multiple ML models across 5, 8, 10, 20, and 30-feature sets with transparent SHAP explainability.",
     approach:
-      "Implemented a strict multi-layer separation between content data access, feature containers, and atomic UI design system primitives.",
+      "Extracted URL-based features, performed Information Gain feature selection, tuned hyperparameters via Optuna and RandomizedSearchCV, and validated across independent datasets.",
     architecture:
-      "Next.js App Router with React Server Components, TypeScript strong interfaces, and a stable abstraction layer ready for Django REST integration.",
+      "Modular Python ML pipeline with cross-dataset validation splits, Optuna search loops, and SHAP summary/waterfall plot generation.",
     implementation:
-      "Designed reusable tokens, dark-first color system, accessible form controls, and subtle micro-animations for responsive desktop & mobile screens.",
+      "Implemented models using Scikit-learn, XGBoost, LightGBM, and CatBoost; optimized hyperparameters and computed SHAP attributions.",
     results:
-      "Achieved 100% type safety, zero lint warnings, fast static rendering, and instant filter state updates.",
+      "Achieved high detection accuracy across cross-dataset benchmarks with detailed SHAP feature attribution rankings.",
     challenges:
-      "Maintaining strict accessibility focus states while supporting custom visual tokens and clean dark mode aesthetics.",
+      "Managing feature subset trade-offs and ensuring consistent SHAP explanation stability across diverse dataset distributions.",
     learnings:
-      "Decoupling the data access abstraction from the presentation layer makes future CMS or database migration seamless.",
+      "Combining feature selection with model explainability provides transparent insight into security risk indicators beyond raw accuracy.",
     futureWork:
-      "Integrate PostgreSQL backend database with Django Admin CMS for real-time live content updates.",
+      "Expand URL feature extraction pipeline to capture dynamic network signals and real-time browser extension integration.",
     links: {
-      github: "https://github.com/example/mani-portfolio",
-      demo: "https://mani.dev",
+      github: "https://github.com/MAN-kumar/phishing_detector",
     },
-    relatedProjects: ["django-rest-api-engine"],
-    relatedResearch: ["explainable-ai-dashboard"],
+    relatedResearch: ["explainable-phishing-detection-research"],
   },
   {
     id: "proj-2",
-    slug: "django-rest-api-engine",
-    title: "Django REST Content Management Core",
+    slug: "ai-interview-coach",
+    title: "AI Interview Coach",
     shortDescription:
-      "Scalable Django REST Framework API powering dynamic data management and PostgreSQL persistence.",
+      "An AI-powered interview preparation platform designed around resume analysis, ATS scoring, interview preparation, and candidate analysis.",
     description:
-      "A robust backend infrastructure with custom user model authentication, structured content serialization, CORS/CSRF security, and automated database indexing.",
+      "An AI-powered interview preparation platform designed around resume analysis, ATS scoring, interview preparation, and candidate analysis. Features resume parsing, ATS scoring algorithms, face detection via MediaPipe, and custom JWT authentication.",
     category: "Full Stack",
     technologies: [
       "Django",
       "Django REST Framework",
+      "React",
       "PostgreSQL",
-      "Python",
-      "Docker",
+      "JWT",
+      "MediaPipe",
     ],
     year: 2026,
     status: "In Progress",
     featured: true,
     published: true,
     problem:
-      "Static content configuration requires redeployment whenever portfolio case studies or research items are updated.",
+      "Helps candidates prepare for interviews and understand how their resume performs against ATS-style evaluation.",
     objective:
-      "Provide a secure, authenticated REST API powering dynamic GET endpoints for public consumption and write access for content owners.",
+      "Build an end-to-end web application combining automated resume analysis, ATS scoring, face detection, and interview guidance.",
     approach:
-      "Utilized Django ORM models with UUID keys, custom serializers, select_related query optimizations, and rate-limited endpoints.",
+      "Designed a Django REST API backend backed by PostgreSQL, paired with a React frontend and MediaPipe computer vision modules.",
     architecture:
-      "PostgreSQL storage engine connected via Django ORM to Django REST Framework endpoints protected by rate limiting and CORS policies.",
+      "React single-page application communicating with Django REST Framework endpoints protected by JWT authentication tokens.",
+    implementation:
+      "Implemented custom user authentication, resume file upload parsing, ATS scoring logic, and MediaPipe face detection for video interview analysis.",
     results:
-      "Delivered sub-50ms API response times with efficient SQL queries avoiding N+1 join overhead.",
-    links: {
-      github: "https://github.com/example/django-portfolio-core",
-    },
-    relatedProjects: ["interactive-portfolio-platform"],
+      "Platform currently in active development with core ATS resume scoring and user authentication subsystems operational.",
+    links: {},
   },
   {
     id: "proj-3",
-    slug: "computer-vision-research-lab",
-    title: "Real-Time Visual Analysis System",
+    slug: "realtime-social-media-platform",
+    title: "Real-Time Social Media Platform",
     shortDescription:
-      "Computer vision pipeline for image classification, feature extraction, and real-time object identification.",
+      "A real-time social media application with real-time communication and backend-driven functionality.",
     description:
-      "An experimental machine learning environment for training, testing, and evaluating deep visual perception models.",
+      "A real-time social media application with real-time communication and backend-driven functionality. Powered by Django Channels and Redis for low-latency WebSocket messaging.",
+    category: "Full Stack",
+    technologies: [
+      "Django",
+      "Django Channels",
+      "Redis",
+      "Python",
+      "PostgreSQL",
+    ],
+    year: 2025,
+    status: "Completed",
+    featured: true,
+    published: true,
+    problem:
+      "Enabling instant bidirectional communication and real-time updates for social platform interactions.",
+    objective:
+      "Architect a scalable real-time messaging and feed system using WebSockets.",
+    approach:
+      "Utilized Django Channels and Redis channel layers to manage asynchronous WebSocket connections and push events.",
+    architecture:
+      "ASGI application server running Django Channels backed by Redis in-memory pub/sub message broker.",
+    implementation:
+      "Developed real-time chat rooms, activity notifications, and WebSocket event handlers connected to a relational database backend.",
+    results:
+      "Delivered instant message delivery with low latency across concurrent client WebSocket connections.",
+    links: {},
+  },
+  {
+    id: "proj-4",
+    slug: "fake-ai-image-detector",
+    title: "Fake AI Image Detector",
+    shortDescription:
+      "An AI-based system for detecting potentially AI-generated or manipulated images.",
+    description:
+      "An AI-based system for detecting potentially AI-generated or manipulated images using computer vision preprocessing and deep learning classification models.",
     category: "AI/ML",
     technologies: [
-      "Python",
-      "PyTorch",
+      "TensorFlow",
       "OpenCV",
-      "NumPy",
-      "Scikit-Learn",
+      "FFmpeg",
+      "Django",
+      "Python",
+    ],
+    year: 2025,
+    status: "Completed",
+    featured: true,
+    published: true,
+    problem:
+      "Identifies synthetic, AI-generated, or digitally altered images to combat digital misattribution.",
+    objective:
+      "Create a deep learning image analysis model integrated into a Django web interface.",
+    approach:
+      "Preprocessed incoming image and media files using OpenCV and FFmpeg before feeding tensor representations to a TensorFlow classification model.",
+    architecture:
+      "Django web backend receiving image uploads, triggering OpenCV/FFmpeg extraction routines, and executing TensorFlow model inference.",
+    implementation:
+      "Trained CNN classifier on image artifacts, integrated media decoding via FFmpeg, and exposed web upload interface.",
+    results:
+      "Successfully classified synthetic image patterns with high accuracy on evaluation splits.",
+    links: {},
+  },
+  {
+    id: "proj-5",
+    slug: "face-mask-detection",
+    title: "Face Mask Detection",
+    shortDescription:
+      "A computer-vision project for detecting whether a person is wearing a face mask.",
+    description:
+      "A computer-vision project for detecting whether a person is wearing a face mask using deep learning models and real-time video frame processing.",
+    category: "AI/ML",
+    technologies: [
+      "TensorFlow",
+      "Keras",
+      "OpenCV",
+      "Python",
     ],
     year: 2025,
     status: "Completed",
     featured: false,
     published: true,
     problem:
-      "High computational costs and latency when performing multi-class visual inference on continuous video frames.",
+      "Automated detection of face mask compliance from video streams and image inputs.",
     objective:
-      "Optimize model inference pipeline for real-time responsiveness without dropping accuracy metrics.",
+      "Train a real-time binary image classifier identifying masked vs. unmasked facial frames.",
     approach:
-      "Applied model quantization, feature map pruning, and tensor batch optimization.",
+      "Combined OpenCV facial detection cascades with a custom Keras/TensorFlow convolutional neural network.",
+    architecture:
+      "Real-time frame capture pipeline passing cropped facial regions to a lightweight CNN classifier.",
+    implementation:
+      "Trained model on masked/unmasked image datasets, integrated camera feed capturing via OpenCV, and rendered bounding boxes with status labels.",
     results:
-      "Reduced latency by 42% while retaining 94.5% classification accuracy across benchmark validation splits.",
+      "Achieved smooth real-time detection on live video streams with high classification confidence.",
+    links: {},
+  },
+  {
+    id: "proj-6",
+    slug: "personal-portfolio",
+    title: "Personal Portfolio",
+    shortDescription:
+      "An interactive developer portfolio showcasing projects, research, education, skills, and professional information.",
+    description:
+      "An interactive developer portfolio showcasing projects, research, education, skills, and professional information. Features an interactive 3D frontend built with Next.js App Router and dynamic Django REST API integration backed by PostgreSQL.",
+    category: "Full Stack",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Three.js",
+      "React Three Fiber",
+      "Framer Motion",
+      "Django REST Framework",
+      "PostgreSQL",
+    ],
+    year: 2026,
+    status: "Completed",
+    featured: true,
+    published: true,
+    problem:
+      "Showcasing engineering projects, research papers, and technical capabilities in a cohesive, interactive workspace.",
+    objective:
+      "Build a dark-first responsive web platform integrating a modern Next.js frontend with a Django REST API backend.",
+    approach:
+      "Decoupled UI presentation from data fetching, utilizing TypeScript strong types, dynamic 3D knowledge graph visualizers, and structured REST API fallback mechanisms.",
+    architecture:
+      "Next.js 16 App Router hosted on Vercel communicating with Django 5 REST Framework hosted on Render backed by PostgreSQL.",
+    implementation:
+      "Developed responsive page layouts across 9 routes, Three.js knowledge graph canvas, smooth Framer Motion transitions, and idempotent data seeding commands.",
+    results:
+      "Delivered a fast, accessible, 100% type-safe portfolio platform deployed live to production cloud servers.",
     links: {
-      github: "https://github.com/example/cv-research-lab",
+      github: "https://github.com/MAN-kumar",
+      demo: "https://mani-portfolio1.vercel.app",
     },
-    relatedResearch: ["explainable-ai-dashboard"],
+    relatedProjects: ["explainable-phishing-detection", "ai-interview-coach"],
+    relatedResearch: ["explainable-phishing-detection-research"],
   },
 ];

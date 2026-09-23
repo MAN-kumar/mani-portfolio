@@ -6,18 +6,26 @@ import { ContactInfo } from "@/components/contact/ContactInfo";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { getProfile, getSocials } from "@/lib/data";
 
+export const metadata = {
+  title: "Contact",
+  description:
+    "Direct communication channel to get in touch with Mani Kumar for full-stack engineering roles, advisory, or research inquiries.",
+};
+
 export default async function ContactPage() {
   const profile = await getProfile();
   const socials = await getSocials();
 
   return (
-    <PageContainer maxWidth="wide" className="py-24 sm:py-32">
+    <PageContainer maxWidth="wide" className="pt-28 sm:pt-36 pb-16 sm:pb-24">
       <FadeIn>
-        <SectionHeading
-          eyebrow="GET IN TOUCH"
-          title="Connect & Collaborate"
-          description="Have a technical inquiry, project proposal, or research question? Send a direct message or connect on social platforms."
-        />
+        <div className="mb-8 sm:mb-12">
+          <SectionHeading
+            eyebrow="05 // COMMUNICATION CHANNEL"
+            title="Connect & Collaborate"
+            description="Have a technical inquiry, project proposal, or research question? Send a direct message payload or connect on verified platforms."
+          />
+        </div>
       </FadeIn>
 
       <FadeIn delay={0.2} className="mt-8">

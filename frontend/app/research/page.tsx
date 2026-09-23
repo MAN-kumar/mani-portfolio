@@ -1,30 +1,35 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ResearchCard } from "@/components/research/ResearchCard";
+import { ResearchContainer } from "@/components/research/ResearchContainer";
+import { LoadingState } from "@/components/feedback/LoadingState";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { getResearch } from "@/lib/data";
+
+export const metadata = {
+  title: "Research",
+  description:
+    "Experimental logbook, applied machine learning research, and dataset benchmarks by Mani Kumar.",
+};
 
 export default async function ResearchPage() {
   const researchList = await getResearch();
 
   return (
-    <PageContainer maxWidth="wide" className="py-24 sm:py-32">
+    <PageContainer maxWidth="wide" className="pt-28 sm:pt-36 pb-16 sm:pb-24">
       <FadeIn>
-        <SectionHeading
-          eyebrow="RESEARCH LAB"
-          title="Experiments & Methodologies"
-          description="Investigating machine learning explainability, model feature attribution, and algorithmic benchmarks."
-        />
-      </FadeIn>
-
-      <FadeIn delay={0.2} className="mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {researchList.map((item) => (
-            <ResearchCard key={item.id} research={item} />
-          ))}
+        <div className="mb-8 sm:mb-12">
+          <SectionHeading
+            eyebrow="02 // RESEARCH LOGBOOK"
+            title="Experiments, Datasets & Methodologies"
+            description="Investigating machine learning explainability, URL-based security classification, and feature attribution benchmarks."
+          />
         </div>
       </FadeIn>
+
+      <Suspense fallback={<LoadingState count={4} />}>
+        <ResearchContainer initialResearch={researchList} />
+      </Suspense>
     </PageContainer>
   );
 }

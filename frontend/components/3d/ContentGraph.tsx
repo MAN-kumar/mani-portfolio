@@ -25,7 +25,11 @@ export const graphNodes: NodeData[] = [
   { id: "skill-ai", label: "Machine Learning", category: "skill", position: [-0.2, 1.4, 0.1], connections: ["res-explainable"] },
 ];
 
-export const ContentGraph: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
+export const ContentGraph: React.FC<{
+  isMobile?: boolean;
+  primaryColor?: string;
+  secondaryColor?: string;
+}> = ({ isMobile = false, primaryColor = "#6366f1", secondaryColor = "#818cf8" }) => {
   const groupRef = useRef<THREE.Group>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -78,6 +82,23 @@ export const ContentGraph: React.FC<{ isMobile?: boolean }> = ({ isMobile = fals
     return segments;
   }, [hoveredNodeId]);
 
+  // Derive dynamic theme-aware colors for node categories without hardcoded hex values
+  const categoryColors = useMemo(() => {
+    const pColor = new THREE.Color(primaryColor);
+    const sColor = new THREE.Color(secondaryColor);
+
+    // Derive research and skill colors from active theme palette
+    const researchHex = pColor.clone().offsetHSL(0.08, -0.05, 0.05).getHexString();
+    const skillHex = sColor.clone().offsetHSL(-0.08, -0.05, 0.05).getHexString();
+
+    return {
+      project: primaryColor,
+      tech: secondaryColor,
+      research: `#${researchHex}`,
+      skill: `#${skillHex}`,
+    };
+  }, [primaryColor, secondaryColor]);
+
   const scale = isMobile ? 1.0 : 1.35;
 
   return (
@@ -88,11 +109,7 @@ export const ContentGraph: React.FC<{ isMobile?: boolean }> = ({ isMobile = fals
         const isConnected = activeConnectedIds.has(node.id);
         const isDimmed = hoveredNodeId !== null && !isHovered && !isConnected;
 
-        let color = "#38bdf8"; // sky cyan default
-        if (node.category === "project") color = "#38bdf8";
-        if (node.category === "research") color = "#f59e0b"; // amber research
-        if (node.category === "skill") color = "#10b981"; // emerald skill
-        if (node.category === "tech") color = "#818cf8"; // indigo tech
+        const color = categoryColors[node.category] || primaryColor;
 
         const nodeRadius = isHovered ? 0.16 : 0.11;
         const opacity = isDimmed ? 0.15 : isHovered ? 1.0 : 0.75;
@@ -124,7 +141,7 @@ export const ContentGraph: React.FC<{ isMobile?: boolean }> = ({ isMobile = fals
       {lineSegments.map((segment) => {
         const isDimmed =
           hoveredNodeId !== null && !segment.isConnectedToHovered;
-        const lineColor = segment.isConnectedToHovered ? "#38bdf8" : "#334155";
+        const lineColor = segment.isConnectedToHovered ? primaryColor : "#334155";
         const opacity = isDimmed ? 0.08 : segment.isConnectedToHovered ? 0.8 : 0.25;
 
         const points = [

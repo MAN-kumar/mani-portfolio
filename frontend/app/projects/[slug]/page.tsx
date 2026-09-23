@@ -13,6 +13,22 @@ export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
+export async function generateMetadata({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found | Mani Kumar",
+    };
+  }
+
+  return {
+    title: `${project.title} | Case Study`,
+    description: project.shortDescription || project.description,
+  };
+}
+
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
@@ -21,9 +37,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  // Resolve related projects & research data
+  // Resolve related projects, research, and adjacent navigation
   const allProjects = await getProjects();
   const allResearch = await getResearch();
+
+  const currentIndex = allProjects.findIndex((p) => p.slug === project.slug);
+  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : undefined;
+  const nextProject =
+    currentIndex >= 0 && currentIndex < allProjects.length - 1
+      ? allProjects[currentIndex + 1]
+      : undefined;
 
   const relatedProjectsData = allProjects.filter((p) =>
     project.relatedProjects?.includes(p.slug)
@@ -34,11 +57,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   );
 
   return (
-    <PageContainer maxWidth="wide" className="py-24 sm:py-32">
+    <PageContainer maxWidth="wide" className="pt-28 sm:pt-36 pb-16 sm:pb-24">
       <ProjectDetailView
         project={project}
         relatedProjectsData={relatedProjectsData}
         relatedResearchData={relatedResearchData}
+        prevProject={prevProject}
+        nextProject={nextProject}
       />
     </PageContainer>
   );

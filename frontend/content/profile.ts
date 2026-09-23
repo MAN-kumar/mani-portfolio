@@ -1,22 +1,21 @@
 import { Profile } from "@/types/portfolio";
 
 export const profileData: Profile = {
-  name: "Mani",
-  headline: "Full Stack & AI Engineer",
+  name: "Mani Kumar",
+  headline: "Computer Science Student | Full-Stack Developer | AI/ML Enthusiast",
   shortBio:
-    "Building intelligent, highly-interactive digital products with Next.js, TypeScript, Django, and Machine Learning.",
+    "I’m a Computer Science student and developer interested in building full-stack applications and AI/ML systems. I work primarily with Python, Django, and machine learning technologies, with a focus on practical projects and research.",
   longBio:
-    "I focus on engineering high-performance Web applications, scalable API systems, and intelligent machine learning models. My approach treats content as structured data and UI as a predictable design system.",
-  currentFocus:
-    "Architecting full-stack applications with Next.js App Router, Django REST Framework, PostgreSQL, and modern web motion.",
+    "Computer Science student and full-stack developer with hands-on experience building web applications and AI/ML systems. Specializing in Python, Django, Django REST Framework, and machine learning workflows with a focus on explainable AI and practical software engineering.",
+  currentFocus: "B.Tech Computer Science student",
   whatIBuild: [
     "Full-Stack Web Applications",
-    "Interactive 3D & Motion UI Experiences",
-    "RESTful & GraphQL API Architectures",
-    "Machine Learning & Research Prototypes",
+    "AI/ML & Computer Vision Systems",
+    "RESTful Backend APIs",
+    "Explainable AI Research",
   ],
-  philosophy: "CONTENT IS DATA. UI IS A SYSTEM.",
-  location: "India",
-  availability: "Available for high-impact projects & collaborations",
-  email: "contact@mani.dev",
+  philosophy: "Building practical systems with clean architecture, robust backends, and explainable AI.",
+  location: "Bhubaneswar",
+  availability: "Available for engineering opportunities & collaborations",
+  email: "arnabgoswami518@gmail.com",
 };

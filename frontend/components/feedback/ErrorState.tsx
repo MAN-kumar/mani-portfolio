@@ -21,7 +21,7 @@ export const ErrorState: React.FC<ErrorStateProps> = ({
     >
       <AlertCircle className="h-8 w-8 text-rose-400 mb-3" />
       <h3 className="text-base font-bold text-rose-300 mb-1">{title}</h3>
-      <p className="text-xs sm:text-sm text-slate-300 max-w-md mb-4">{message}</p>
+      <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md mb-4">{message}</p>
       {onRetry && (
         <Button variant="secondary" size="sm" onClick={onRetry}>
           Try Again

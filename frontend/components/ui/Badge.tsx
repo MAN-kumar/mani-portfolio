@@ -14,12 +14,12 @@ export const Badge: React.FC<BadgeProps> = ({
   className = "",
   ...props
 }) => {
-  const baseStyles = "inline-flex items-center font-medium rounded-full transition-colors";
+  const baseStyles = "inline-flex items-center font-mono font-medium rounded-full transition-colors select-none";
 
   const variantStyles = {
-    default: "bg-slate-800/80 text-slate-200 border border-slate-700/60",
-    outline: "bg-transparent text-slate-300 border border-slate-800",
-    accent: "bg-sky-500/10 text-sky-400 border border-sky-500/20",
+    default: "bg-[var(--surface-elevated)] text-[var(--text-secondary)] border border-[var(--border)]",
+    outline: "bg-transparent text-[var(--text-secondary)] border border-[var(--border-hover)]",
+    accent: "bg-[var(--accent-soft)] text-[var(--accent-primary)] border border-[var(--accent-glow)]",
     success: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
     warning: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
   };

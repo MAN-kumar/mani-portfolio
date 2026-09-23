@@ -32,15 +32,15 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   return (
     <div className={`flex flex-col ${alignClasses[align]} max-w-3xl mb-8 sm:mb-12 ${className}`} {...props}>
       {eyebrow && (
-        <span className="font-mono text-xs sm:text-sm font-semibold text-sky-400 tracking-wider uppercase mb-2">
+        <span className="font-mono text-xs sm:text-sm font-semibold text-[var(--accent-primary)] tracking-wider uppercase mb-2">
           {eyebrow}
         </span>
       )}
-      <h2 className={`text-slate-100 ${titleSizeClasses[size]}`}>
+      <h2 className={`text-[var(--text-primary)] ${titleSizeClasses[size]}`}>
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-sm sm:text-base text-slate-400 leading-relaxed">
+        <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
           {description}
         </p>
       )}

@@ -43,8 +43,11 @@ import { socialsData } from "@/content/socials";
 export async function getProfileFromApi(): Promise<Profile> {
   try {
     const rawProfiles = await fetchApi<ApiProfile[]>("profile/");
-    if (Array.isArray(rawProfiles) && rawProfiles.length > 0) {
-      return normalizeProfile(rawProfiles[0]);
+    if (Array.isArray(rawProfiles)) {
+      if (rawProfiles.length > 0) {
+        return normalizeProfile(rawProfiles[0]);
+      }
+      return profileData;
     }
     return profileData;
   } catch (error) {
@@ -57,7 +60,7 @@ export async function getProfileFromApi(): Promise<Profile> {
 export async function getProjectsFromApi(): Promise<Project[]> {
   try {
     const rawProjects = await fetchApi<ApiProject[]>("projects/");
-    if (Array.isArray(rawProjects) && rawProjects.length > 0) {
+    if (Array.isArray(rawProjects)) {
       return rawProjects.map(normalizeProject);
     }
     return projectsData.filter((p) => p.published);
@@ -73,12 +76,12 @@ export async function getProjectBySlugFromApi(slug: string): Promise<Project | u
     if (rawProj && rawProj.slug) {
       return normalizeProject(rawProj);
     }
-    const projects = await getProjectsFromApi();
-    return projects.find((p) => p.slug === slug);
+    return undefined;
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) {
       return undefined;
     }
+    console.warn("API project detail fetch failed, checking fallback:", error instanceof Error ? error.message : error);
     const local = projectsData.find((p) => p.slug === slug);
     return local && local.published ? local : undefined;
   }
@@ -87,7 +90,7 @@ export async function getProjectBySlugFromApi(slug: string): Promise<Project | u
 export async function getFeaturedProjectsFromApi(): Promise<Project[]> {
   try {
     const rawFeatured = await fetchApi<ApiProject[]>("projects/featured/");
-    if (Array.isArray(rawFeatured) && rawFeatured.length > 0) {
+    if (Array.isArray(rawFeatured)) {
       return rawFeatured.map(normalizeProject);
     }
     const projects = await getProjectsFromApi();
@@ -102,7 +105,7 @@ export async function getFeaturedProjectsFromApi(): Promise<Project[]> {
 export async function getResearchFromApi(): Promise<Research[]> {
   try {
     const rawResearch = await fetchApi<ApiResearch[]>("research/");
-    if (Array.isArray(rawResearch) && rawResearch.length > 0) {
+    if (Array.isArray(rawResearch)) {
       return rawResearch.map(normalizeResearch);
     }
     return researchData.filter((r) => r.published);
@@ -118,12 +121,12 @@ export async function getResearchBySlugFromApi(slug: string): Promise<Research |
     if (rawRes && rawRes.slug) {
       return normalizeResearch(rawRes);
     }
-    const researchList = await getResearchFromApi();
-    return researchList.find((r) => r.slug === slug);
+    return undefined;
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) {
       return undefined;
     }
+    console.warn("API research detail fetch failed, checking fallback:", error instanceof Error ? error.message : error);
     const local = researchData.find((r) => r.slug === slug);
     return local && local.published ? local : undefined;
   }
@@ -133,7 +136,7 @@ export async function getResearchBySlugFromApi(slug: string): Promise<Research |
 export async function getSkillsFromApi(): Promise<Skill[]> {
   try {
     const rawSkills = await fetchApi<ApiSkill[]>("skills/");
-    if (Array.isArray(rawSkills) && rawSkills.length > 0) {
+    if (Array.isArray(rawSkills)) {
       return rawSkills.map(normalizeSkill);
     }
     return skillsData.filter((s) => s.active).sort((a, b) => a.order - b.order);
@@ -147,7 +150,7 @@ export async function getSkillsFromApi(): Promise<Skill[]> {
 export async function getExperiencesFromApi(): Promise<Experience[]> {
   try {
     const rawExp = await fetchApi<ApiExperience[]>("experience/");
-    if (Array.isArray(rawExp) && rawExp.length > 0) {
+    if (Array.isArray(rawExp)) {
       return rawExp.map(normalizeExperience);
     }
     return experienceData.sort((a, b) => a.order - b.order);
@@ -161,7 +164,7 @@ export async function getExperiencesFromApi(): Promise<Experience[]> {
 export async function getEducationFromApi(): Promise<Education[]> {
   try {
     const rawEdu = await fetchApi<ApiEducation[]>("education/");
-    if (Array.isArray(rawEdu) && rawEdu.length > 0) {
+    if (Array.isArray(rawEdu)) {
       return rawEdu.map(normalizeEducation);
     }
     return educationData.sort((a, b) => a.order - b.order);
@@ -175,7 +178,7 @@ export async function getEducationFromApi(): Promise<Education[]> {
 export async function getAchievementsFromApi(): Promise<Achievement[]> {
   try {
     const rawAch = await fetchApi<ApiAchievement[]>("achievements/");
-    if (Array.isArray(rawAch) && rawAch.length > 0) {
+    if (Array.isArray(rawAch)) {
       return rawAch.map(normalizeAchievement);
     }
     return achievementsData.sort((a, b) => a.order - b.order);
@@ -189,7 +192,7 @@ export async function getAchievementsFromApi(): Promise<Achievement[]> {
 export async function getSocialsFromApi(): Promise<SocialLink[]> {
   try {
     const rawSocials = await fetchApi<ApiSocialLink[]>("social-links/");
-    if (Array.isArray(rawSocials) && rawSocials.length > 0) {
+    if (Array.isArray(rawSocials)) {
       return rawSocials.map(normalizeSocialLink);
     }
     return socialsData.filter((s) => s.active).sort((a, b) => a.order - b.order);

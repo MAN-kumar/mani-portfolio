@@ -12,13 +12,13 @@ export interface JourneyPreviewProps {
 
 export const JourneyPreview: React.FC<JourneyPreviewProps> = ({ items }) => {
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-12 sm:py-16 border-t border-[var(--border)]">
       <FadeIn>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
           <SectionHeading
             eyebrow="05 // JOURNEY & MILESTONES"
             title="Professional Evolution"
-            description="Chronological progress through major milestones, architectural releases, and research explorations."
+            description="Chronological progress through major engineering milestones, academic background, and technical releases."
             className="mb-0"
           />
           <LinkButton
@@ -26,7 +26,7 @@ export const JourneyPreview: React.FC<JourneyPreviewProps> = ({ items }) => {
             variant="ghost"
             size="md"
             rightIcon={<ArrowRight className="h-4 w-4" />}
-            className="self-start sm:self-auto shrink-0"
+            className="self-start sm:self-auto shrink-0 text-[var(--accent-primary)] hover:bg-[var(--accent-soft)]"
           >
             Full Journey Timeline
           </LinkButton>

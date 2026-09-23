@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { ContentGraph } from "./ContentGraph";
 import { SceneFallback } from "./SceneFallback";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode; fallback: React.ReactNode },
@@ -45,14 +46,25 @@ function checkWebGLSupport(): boolean {
 export const HeroScene: React.FC<{ className?: string }> = ({ className = "" }) => {
   const [webGlSupported] = useState<boolean>(() => checkWebGLSupport());
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const { activeThemeConfig } = useTheme();
 
   useEffect(() => {
+    let animFrameId: number | null = null;
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      if (animFrameId !== null) return;
+      animFrameId = requestAnimationFrame(() => {
+        setIsMobile(window.innerWidth < 768);
+        animFrameId = null;
+      });
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    window.addEventListener("resize", checkMobile, { passive: true });
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      if (animFrameId !== null) {
+        cancelAnimationFrame(animFrameId);
+      }
+    };
   }, []);
 
   if (!webGlSupported) {
@@ -61,16 +73,16 @@ export const HeroScene: React.FC<{ className?: string }> = ({ className = "" }) 
 
   return (
     <ErrorBoundary fallback={<SceneFallback className={className} />}>
-      <div className={`relative w-full h-full min-h-[320px] lg:min-h-[380px] pointer-events-auto select-none ${className}`}>
+      <div className={`relative w-full h-[280px] sm:h-[380px] lg:h-[480px] min-h-[280px] pointer-events-auto select-none ${className}`}>
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
           gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
           aria-hidden="true"
         >
           <ambientLight intensity={0.6} />
-          <directionalLight position={[10, 10, 5]} intensity={1} color="#38bdf8" />
-          <directionalLight position={[-10, -10, -5]} intensity={0.4} color="#818cf8" />
-          <ContentGraph isMobile={isMobile} />
+          <directionalLight position={[10, 10, 5]} intensity={1} color={activeThemeConfig.primary} />
+          <directionalLight position={[-10, -10, -5]} intensity={0.4} color={activeThemeConfig.secondary} />
+          <ContentGraph isMobile={isMobile} primaryColor={activeThemeConfig.primary} secondaryColor={activeThemeConfig.secondary} />
         </Canvas>
       </div>
     </ErrorBoundary>

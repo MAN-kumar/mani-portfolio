@@ -18,13 +18,13 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
   onSelectTech,
 }) => {
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-12 sm:py-16 border-t border-[var(--border)]">
       <FadeIn>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
           <SectionHeading
             eyebrow="02 // FEATURED WORK"
             title="Projects & Case Studies"
-            description="Explore selected projects demonstrating scalable architecture, clean design system integration, and robust full-stack implementation."
+            description="Selected engineering projects demonstrating machine learning architecture, explainable AI pipelines, and full-stack web implementations."
             className="mb-0"
           />
           <LinkButton

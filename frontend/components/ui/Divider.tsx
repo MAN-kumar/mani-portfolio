@@ -13,9 +13,9 @@ export const Divider: React.FC<DividerProps> = ({
   ...props
 }) => {
   const variantClasses = {
-    default: "border-slate-800/80",
-    subtle: "border-slate-900",
-    accent: "border-sky-500/20",
+    default: "border-[var(--border)]",
+    subtle: "border-[var(--border)]/50",
+    accent: "border-[var(--accent-glow)]",
   };
 
   if (orientation === "vertical") {
